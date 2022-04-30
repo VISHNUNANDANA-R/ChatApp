@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Chat Application</string>
+    <string name="me">ME</string>
+    <string name="from">from</string>
+</resources>
