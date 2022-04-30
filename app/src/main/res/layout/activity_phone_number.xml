@@ -70,8 +70,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="38dp"
                 android:background="@drawable/textbox_outline"
-                android:padding="8dp"
                 android:hint="Enter mobile number"
+                android:padding="8dp"
+                android:phoneNumber="true"
                 android:textColor="#2E7D32"
                 android:textColorHint="#808080" />
 
