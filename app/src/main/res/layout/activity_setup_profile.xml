@@ -4,14 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".PhoneNumberActivity">
+    tools:context=".SetupProfileActivity">
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="Enter your mobile number"
+        android:text="Profile Info"
         android:textColor="#040404"
         android:textSize="20sp"
         android:textStyle="bold"
@@ -28,7 +28,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/verification" />
+        android:src="@drawable/avatar" />
 
     <TextView
         android:id="@+id/textView2"
@@ -36,7 +36,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:gravity="center"
-        android:text="An SMS will be sent to the below number to verify it"
+        android:text="Please pick a profile image and enter your name"
         android:textColor="#0E0D0D"
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="@+id/textView"
@@ -66,13 +66,12 @@
             android:orientation="vertical">
 
             <EditText
-                android:id="@+id/phoneNumber"
+                android:id="@+id/nameBox"
                 android:layout_width="match_parent"
                 android:layout_height="38dp"
                 android:background="@drawable/textbox_outline"
-                android:hint="Enter mobile number"
+                android:hint="Enter your name"
                 android:padding="8dp"
-                android:inputType="phone"
                 android:textColor="#2E7D32"
                 android:textColorHint="#808080" />
 
@@ -82,7 +81,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:backgroundTint="#4CAF50"
-                android:text="Continue"
+                android:text="Setup profile"
                 app:cornerRadius="10dp" />
         </LinearLayout>
     </androidx.cardview.widget.CardView>

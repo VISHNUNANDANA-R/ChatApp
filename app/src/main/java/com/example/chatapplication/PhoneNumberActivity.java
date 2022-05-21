@@ -23,6 +23,7 @@ public class PhoneNumberActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(PhoneNumberActivity.this,otpActivity.class);
                 intent.putExtra("phoneNumber", binding.phoneNumber.getText().toString());
+                intent.putExtra("phoneNumber",binding.phoneNumber.getText().toString());
                 startActivity(intent);
             }
         });

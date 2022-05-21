@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
@@ -59,9 +60,9 @@ public class otpActivity extends AppCompatActivity {
                     public void onCodeSent(@NonNull String verifyId, @NonNull PhoneAuthProvider.ForceResendingToken forceResendingToken) {
                         super.onCodeSent(verifyId, forceResendingToken);
                         verificationId= verifyId;
-                        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-                        imm.toggleSoftInput(InputMethodManager.SHOW_FORCED,0);
-                        binding.otpview.requestFocus();
+                        //InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                        //imm.toggleSoftInput(InputMethodManager.SHOW_FORCED,0);
+                        //binding.otpview.requestFocus();
                         dialog.dismiss();
                     }
                 }).build();
@@ -75,7 +76,10 @@ public class otpActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()) {
-                            Toast.makeText(otpActivity.this, "Logged in", Toast.LENGTH_SHORT).show();
+                            Intent intent = new Intent(otpActivity.this,SetupProfileActivity.class);
+                            startActivity(intent);
+                            finishAffinity();
+                            // Toast.makeText(otpActivity.this, "Logged in", Toast.LENGTH_SHORT).show();
                         }
                         else {
                             Toast.makeText(otpActivity.this, "Failed", Toast.LENGTH_SHORT).show();
