@@ -9,6 +9,7 @@
     <color name="white">#FFFFFFFF</color>
     <color name="Green">#4CAF50</color>
     <color name="GreenDark">#07A10D</color>
+    <color name="chatGreen">#7CFC00</color>
     <color name="grey">#808080</color>
 
 </resources>

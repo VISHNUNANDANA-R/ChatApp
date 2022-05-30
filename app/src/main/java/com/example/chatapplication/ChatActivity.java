@@ -17,6 +17,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 
 public class ChatActivity extends AppCompatActivity {
 
@@ -36,7 +37,7 @@ public class ChatActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         messages = new ArrayList<>();
-        adapter = new messageAdapter(this,messages);
+        adapter = new messageAdapter(this,messages,senderRoom,receiverRoom);
         binding.recyclerView.setLayoutManager(new LinearLayoutManager(this));
         binding.recyclerView.setAdapter(adapter);
 
@@ -58,6 +59,7 @@ public class ChatActivity extends AppCompatActivity {
                         messages.clear();
                         for (DataSnapshot snapshot1 : snapshot.getChildren()) {
                            message message = snapshot1.getValue(message.class);
+                           message.setMessageId(snapshot1.getKey());
                                    messages.add(message);
                         }
                         adapter.notifyDataSetChanged();
@@ -78,24 +80,33 @@ public class ChatActivity extends AppCompatActivity {
                 message message = new message(messageTxt, senderuid, date.getTime());
                 binding.messageBox.setText("");
 
+                String randomKey=database.getReference().push().getKey();
+
+                HashMap<String,Object> lastMsgObj= new HashMap<>();
+                lastMsgObj.put("lastMsg",message.getMessage());
+                lastMsgObj.put("lastMsgTime",date.getTime());
+                database.getReference().child("chats").child(senderRoom).updateChildren(lastMsgObj);
+                database.getReference().child("chats").child(receiverRoom).updateChildren(lastMsgObj);
+
 
                 database.getReference().child("chats")
                         .child(senderRoom)
                         .child("messages")
-                        .push()
+                        .child(randomKey)
                         .setValue(message).addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void unused) {
                         database.getReference().child("chats")
                                 .child(receiverRoom)
                                 .child("messages")
-                                .push()
+                                .child(randomKey)
                                 .setValue(message).addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override
                             public void onSuccess(Void unused) {
 
                             }
                         });
+
                     }
                 });
             }

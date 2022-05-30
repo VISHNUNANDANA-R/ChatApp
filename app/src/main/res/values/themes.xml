@@ -4,7 +4,7 @@
         @style/OtpWidget.OtpView
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/Green</item>
-        <item name="colorPrimaryVariant">@color/GreenDark</item>
+        <item name="colorPrimaryVariant">@color/Green</item>
         <item name="colorOnPrimary">@color/white</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/teal_200</item>

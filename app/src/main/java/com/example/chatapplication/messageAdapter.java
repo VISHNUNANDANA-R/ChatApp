@@ -21,9 +21,14 @@ public class messageAdapter extends RecyclerView.Adapter {
     final int ITEM_SENT = 1;
     final int ITEM_RECEIVE = 2;
 
-    public messageAdapter(Context context, ArrayList<message> messages) {
+    String senderRoom;
+    String receiverRoom;
+
+    public messageAdapter(Context context, ArrayList<message> messages,String senderRoom,String receiverRoom) {
         this.context=context;
         this.messages=messages;
+        this.senderRoom=senderRoom;
+        this.receiverRoom=receiverRoom;
     }
 
     @NonNull

@@ -60,9 +60,9 @@ public class otpActivity extends AppCompatActivity {
                     public void onCodeSent(@NonNull String verifyId, @NonNull PhoneAuthProvider.ForceResendingToken forceResendingToken) {
                         super.onCodeSent(verifyId, forceResendingToken);
                         verificationId= verifyId;
-                        //InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-                        //imm.toggleSoftInput(InputMethodManager.SHOW_FORCED,0);
-                        //binding.otpview.requestFocus();
+                        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                        imm.toggleSoftInput(InputMethodManager.SHOW_FORCED,0);
+                        binding.otpview.requestFocus();
                         dialog.dismiss();
                     }
                 }).build();
