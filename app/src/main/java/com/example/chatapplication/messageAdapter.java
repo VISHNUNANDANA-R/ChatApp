@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.chatapplication.databinding.ItemRecieveBinding;
 import com.example.chatapplication.databinding.ItemSentBinding;
 import com.google.firebase.auth.FirebaseAuth;
@@ -59,9 +60,27 @@ public class messageAdapter extends RecyclerView.Adapter {
 
         if(holder.getClass() == SentViewHolder.class) {
             SentViewHolder viewHolder = (SentViewHolder)holder;
+
+            if (message.getMessage().equals("Photo")) {
+                viewHolder.binding.image1.setVisibility(View.VISIBLE);
+                viewHolder.binding.message.setVisibility(View.GONE);
+                Glide.with(context)
+                        .load(message.getImageUrl())
+                        .placeholder(R.drawable.placeholder)
+                        .into(viewHolder.binding.image1);
+            }
+
             viewHolder.binding.message.setText(message.getMessage());
         }else {
             ReceiverViewHolder viewHolder = (ReceiverViewHolder) holder;
+            if (message.getMessage().equals("Photo")) {
+                viewHolder.binding.image2.setVisibility(View.VISIBLE);
+                viewHolder.binding.message.setVisibility(View.GONE);
+                Glide.with(context)
+                        .load(message.getImageUrl())
+                        .placeholder(R.drawable.placeholder)
+                        .into(viewHolder.binding.image2);
+            }
             viewHolder.binding.message.setText(message.getMessage());
         }
 

@@ -1,7 +1,7 @@
 package com.example.chatapplication;
 
 public class message {
-    private String messageId,message,senderId;
+    private String messageId,message,senderId,imageUrl;
     private long timestamp;
     private int feeling;
 
@@ -52,5 +52,13 @@ public class message {
 
     public void setFeeling(int feeling) {
         this.feeling = feeling;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 }
