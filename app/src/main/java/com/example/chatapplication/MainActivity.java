@@ -24,6 +24,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.messaging.FirebaseMessaging;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
@@ -48,103 +49,125 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        try {
+            database = FirebaseDatabase.getInstance();
 
-        dialog=new ProgressDialog(this);
-        dialog.setMessage("Uploading Image");
-        dialog.setCancelable(false);
+            FirebaseMessaging.getInstance()
+                    .getToken()
+                    .addOnSuccessListener(new OnSuccessListener<String>() {
+                        @Override
+                        public void onSuccess(String token) {
+                            HashMap<String, Object> map = new HashMap<>();
+                            map.put("token", token);
+                            database.getReference()
+                                    .child("users")
+                                    .child(FirebaseAuth.getInstance().getUid())
+                                    .updateChildren(map);
+                        }
+                    });
+            dialog = new ProgressDialog(this);
+            dialog.setMessage("Uploading Image");
+            dialog.setCancelable(false);
 
-        database = FirebaseDatabase.getInstance();
-        users = new ArrayList<>();
-        userStatuses=new ArrayList<>();
-        database.getReference().child("users").child(FirebaseAuth.getInstance().getUid())
-                .addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        user=snapshot.getValue(User.class);
-                    }
 
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
-
-                    }
-                });
-
-        usersAdapter = new UsersAdapter(this, users);
-        statusAdapters=new TopStatusAdapters(this,userStatuses);
-        LinearLayoutManager layoutManager=new LinearLayoutManager(this);
-        layoutManager.setOrientation(RecyclerView.HORIZONTAL);
-        binding.statusList.setLayoutManager(layoutManager);
-        binding.statusList.setAdapter(statusAdapters);
-        binding.recyclerView.setAdapter(usersAdapter);
-        binding.recyclerView.showShimmerAdapter();
-        binding.statusList.showShimmerAdapter();
-
-        database.getReference().child("users").addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                users.clear();
-                for (DataSnapshot snapshot1 : snapshot.getChildren()) {
-                    User user = snapshot1.getValue(User.class);
-                    if(!user.getUid().equals(FirebaseAuth.getInstance().getUid()))
-                        users.add(user);
-
-                }
-                binding.recyclerView.hideShimmerAdapter();
-                usersAdapter.notifyDataSetChanged();
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-
-        database.getReference().child("stories").addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if(snapshot.exists()){
-                    userStatuses.clear();
-                    for(DataSnapshot storySnapshot : snapshot.getChildren()){
-                        UserStatus status=new UserStatus();
-                        status.setName(storySnapshot.child("name").getValue(String.class));
-                        status.setProfileImage(storySnapshot.child("profileImage").getValue(String.class));
-                        status.setLastUpdated(storySnapshot.child("lastUpdated").getValue(Long.class));
-
-                        ArrayList<Status>statuses=new ArrayList<>();
-
-                        for(DataSnapshot statusSnapshot :storySnapshot.child("statuses").getChildren()){
-                            Status sampleStatus =statusSnapshot.getValue(Status.class);
-                            statuses.add(sampleStatus);
+            users = new ArrayList<>();
+            userStatuses = new ArrayList<>();
+            database.getReference().child("users").child(FirebaseAuth.getInstance().getUid())
+                    .addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                            user = snapshot.getValue(User.class);
                         }
 
-                        status.setStatuses(statuses);
-                        userStatuses.add(status);
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+
+                        }
+                    });
+
+            usersAdapter = new UsersAdapter(this, users);
+            statusAdapters = new TopStatusAdapters(this, userStatuses);
+            LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+            layoutManager.setOrientation(RecyclerView.HORIZONTAL);
+            binding.statusList.setLayoutManager(layoutManager);
+            binding.statusList.setAdapter(statusAdapters);
+            binding.recyclerView.setAdapter(usersAdapter);
+            binding.recyclerView.showShimmerAdapter();
+            binding.statusList.showShimmerAdapter();
+
+            database.getReference().child("users").addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    users.clear();
+                    for (DataSnapshot snapshot1 : snapshot.getChildren()) {
+                        User user = snapshot1.getValue(User.class);
+                        if (!user.getUid().equals(FirebaseAuth.getInstance().getUid()))
+                            users.add(user);
+
                     }
-                    binding.statusList.hideShimmerAdapter();
-                    statusAdapters.notifyDataSetChanged();
+                    binding.recyclerView.hideShimmerAdapter();
+                    usersAdapter.notifyDataSetChanged();
                 }
-            }
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
 
-            }
-        });
-
-        binding.bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                switch(item.getItemId()) {
-                    case R.id.status:
-                        Intent intent = new Intent();
-                        intent.setType("image/*");
-                        intent.setAction(Intent.ACTION_GET_CONTENT);
-                        startActivityForResult(intent, 75);
-                        break;
                 }
-                return false;
-            }
-        });
+            });
+
+            database.getReference().child("stories").addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    if (snapshot.exists()) {
+                        userStatuses.clear();
+                        for (DataSnapshot storySnapshot : snapshot.getChildren()) {
+                            UserStatus status = new UserStatus();
+                            status.setName(storySnapshot.child("name").getValue(String.class));
+                            status.setProfileImage(storySnapshot.child("profileImage").getValue(String.class));
+                            status.setLastUpdated(storySnapshot.child("lastUpdated").getValue(Long.class));
+
+                            ArrayList<Status> statuses = new ArrayList<>();
+
+                            for (DataSnapshot statusSnapshot : storySnapshot.child("statuses").getChildren()) {
+
+                                Status sampleStatus = statusSnapshot.getValue(Status.class);
+                                statuses.add(sampleStatus);
+                            }
+
+                            status.setStatuses(statuses);
+
+                            userStatuses.add(status);
+
+                        }
+                        binding.statusList.hideShimmerAdapter();
+                        statusAdapters.notifyDataSetChanged();
+                    }
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+
+                }
+            });
+
+            binding.bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+                @Override
+                public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                    switch (item.getItemId()) {
+                        case R.id.status:
+                            Intent intent = new Intent();
+                            intent.setType("image/*");
+                            intent.setAction(Intent.ACTION_GET_CONTENT);
+                            startActivityForResult(intent, 75);
+                            break;
+                    }
+                    return false;
+                }
+            });
+        }
+        catch(Exception E){
+            Toast.makeText(MainActivity.this, "Error", Toast.LENGTH_SHORT).show();
+        }
     }
 
     @Override

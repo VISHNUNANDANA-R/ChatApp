@@ -1,5 +1,6 @@
 <resources>
-    <string name="app_name">ChatApplication</string>
+    <string name="app_name">TextMe</string>
     <string name="me">ME</string>
     <string name="from">from</string>
+    <string name="TextMe">TextMe</string>
 </resources>
