@@ -2,7 +2,9 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="wrap_content"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:layout_alignParentLeft="false"
+    android:layout_centerHorizontal="false">
 
     <RelativeLayout
         android:id="@+id/image_layout"
@@ -18,7 +20,7 @@
             android:id="@+id/image"
             android:layout_width="64dp"
             android:layout_height="64dp"
-            android:layout_alignParentLeft="false"
+            android:layout_alignParentLeft="true"
             android:layout_alignParentTop="false"
             android:layout_centerInParent="true"
             android:padding="6dp"
@@ -28,9 +30,10 @@
             android:id="@+id/circular_status_view"
             android:layout_width="64dp"
             android:layout_height="64dp"
-            android:layout_alignParentStart="true"
+            android:layout_alignParentStart="false"
             android:layout_alignParentLeft="false"
             android:layout_centerInParent="true"
+            android:layout_centerHorizontal="false"
             app:portion_color="@color/Green"
             app:portion_spacing="4dp"
             app:portion_width="4dp"
