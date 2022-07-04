@@ -240,9 +240,9 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.search:
-                Toast.makeText(this, "Search Clicked", Toast.LENGTH_SHORT).show();
-                break;
+//            case R.id.search:
+//                Toast.makeText(this, "Search Clicked", Toast.LENGTH_SHORT).show();
+//                break;
             case R.id.settings:
                 Toast.makeText(this, "Settings CLicked", Toast.LENGTH_SHORT).show();
                 break;
