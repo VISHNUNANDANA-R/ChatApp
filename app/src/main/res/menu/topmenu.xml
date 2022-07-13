@@ -3,12 +3,6 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/group"
-        android:title="Groups" />
-    <item
-        android:id="@+id/invite"
-        android:title="Invite" />
-    <item
-        android:id="@+id/settings"
-        android:title="Settings" />
+        android:id="@+id/Logout"
+        android:title="Logout" />
 </menu>

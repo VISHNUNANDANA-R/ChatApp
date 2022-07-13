@@ -237,22 +237,27 @@ public class MainActivity extends AppCompatActivity {
         database.getReference().child("presence").child(currentId).setValue("Offline");
     }
 
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()) {
-//            case R.id.search:
-//                Toast.makeText(this, "Search Clicked", Toast.LENGTH_SHORT).show();
-//                break;
-            case R.id.settings:
-                Toast.makeText(this, "Settings CLicked", Toast.LENGTH_SHORT).show();
-                break;
-        }
-        return super.onOptionsItemSelected(item);
-    }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.topmenu,menu);
         return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.Logout:
+                logout();
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    public void logout() {
+        FirebaseAuth.getInstance().signOut();
+        Intent intent=new Intent(MainActivity.this,PhoneNumberActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(intent);
     }
 }
