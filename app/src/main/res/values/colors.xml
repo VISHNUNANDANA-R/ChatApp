@@ -11,5 +11,8 @@
     <color name="GreenDark">#07A10D</color>
     <color name="chatGreen">#7CFC00</color>
     <color name="grey">#808080</color>
+    <color name="CornFlowerBlue">#6495ED</color>
+    <color name="BlueViolet">#8A2BE2</color>
+    <color name="LightGreen">#90EE90</color>
 
 </resources>

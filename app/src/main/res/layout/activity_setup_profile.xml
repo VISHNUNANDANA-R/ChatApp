@@ -21,14 +21,13 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="220dp"
+        android:layout_height="220dp"
         android:layout_marginTop="16dp"
-        android:layout_marginBottom="16dp"
+        android:src="@drawable/avatar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:src="@drawable/avatar" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textView2"
@@ -68,11 +67,11 @@
             <EditText
                 android:id="@+id/nameBox"
                 android:layout_width="match_parent"
-                android:layout_height="38dp"
+                android:layout_height="48dp"
                 android:background="@drawable/textbox_outline"
                 android:hint="Enter your name"
                 android:padding="8dp"
-                android:textColor="#2E7D32"
+                android:textColor="#6495ED"
                 android:textColorHint="#808080" />
 
             <Button
@@ -80,7 +79,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:backgroundTint="#4CAF50"
+                android:backgroundTint="#6495ED"
                 android:text="Setup profile"
                 app:cornerRadius="10dp" />
         </LinearLayout>

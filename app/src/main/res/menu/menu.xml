@@ -9,8 +9,4 @@
         android:id="@+id/status"
         android:icon="@drawable/status"
         android:title="status" />
-    <item
-        android:id="@+id/call"
-        android:icon="@android:drawable/ic_menu_call"
-        android:title="calls" />
 </menu>

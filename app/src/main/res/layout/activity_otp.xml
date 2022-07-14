@@ -71,11 +71,11 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:inputType="number"
-                android:itemBackground="#A0CDA2"
+                android:itemBackground="#6495ED"
                 android:focusedByDefault="true"
                 android:textColor="#000000"
                 app:OtpItemCount="6"
-                app:OtpLineColor="#4CAF50"
+                app:OtpLineColor="#6495ED"
                 app:OtpViewType="line"
                 android:focusableInTouchMode="true"
                 />
@@ -85,7 +85,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:backgroundTint="#4CAF50"
+                android:backgroundTint="#6495ED"
                 android:text="Continue"
                 app:cornerRadius="10dp" />
         </LinearLayout>

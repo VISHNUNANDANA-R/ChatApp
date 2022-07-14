@@ -34,7 +34,7 @@
             android:layout_alignParentLeft="false"
             android:layout_centerInParent="true"
             android:layout_centerHorizontal="false"
-            app:portion_color="@color/Green"
+            app:portion_color="@color/CornFlowerBlue"
             app:portion_spacing="4dp"
             app:portion_width="4dp"
             app:portions_count="1" />

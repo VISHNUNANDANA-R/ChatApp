@@ -3,8 +3,8 @@
     <style name="Theme.ChatApplication" parent="Theme.MaterialComponents.DayNight.DarkActionBar" >
         @style/OtpWidget.OtpView
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/Green</item>
-        <item name="colorPrimaryVariant">@color/Green</item>
+        <item name="colorPrimary">@color/CornFlowerBlue</item>
+        <item name="colorPrimaryVariant">@color/CornFlowerBlue</item>
         <item name="colorOnPrimary">@color/white</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/teal_200</item>
@@ -19,8 +19,8 @@
     <style name="Theme.ChatApplication.NoActionBar" parent="Theme.MaterialComponents.DayNight.NoActionBar" >
         @style/OtpWidget.OtpView
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/Green</item>
-        <item name="colorPrimaryVariant">@color/Green</item>
+        <item name="colorPrimary">@color/CornFlowerBlue</item>
+        <item name="colorPrimaryVariant">@color/CornFlowerBlue</item>
         <item name="colorOnPrimary">@color/white</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/teal_200</item>

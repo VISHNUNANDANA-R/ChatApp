@@ -73,7 +73,7 @@
                 android:hint="Enter mobile number"
                 android:padding="8dp"
                 android:inputType="phone"
-                android:textColor="#2E7D32"
+                android:textColor="#6495ED"
                 android:textColorHint="#808080" />
 
             <Button
@@ -81,7 +81,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:backgroundTint="#4CAF50"
+                android:backgroundTint="@color/CornFlowerBlue"
                 android:text="Continue"
                 app:cornerRadius="10dp" />
         </LinearLayout>
